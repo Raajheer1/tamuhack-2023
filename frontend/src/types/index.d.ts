@@ -11,7 +11,6 @@ export type Flight = {
 };
 
 export type Airport = {
-    icao: string;
     code: string;
     name: string;
     city: string;

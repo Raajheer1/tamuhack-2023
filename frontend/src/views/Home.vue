@@ -8,14 +8,12 @@ import FlightInfo from "@/components/FlightInfo.vue";
 import {Airport, Flight} from "@/types";
 
 const JFK: Airport = {
-  icao: "KJFK",
   code: "JFK",
   name: "John F. Kennedy International Airport",
   city: "New York",
 }
 
 const DFW: Airport = {
-  icao: "KDFW",
   code: "DFW",
   name: "Dallas/Fort Worth International Airport",
   city: "Dallas",
