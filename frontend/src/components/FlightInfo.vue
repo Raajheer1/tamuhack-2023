@@ -13,7 +13,7 @@
           </div>
           <div class="flex py-1">
             <p v-if="flight.delay_percentage < 5" class="text-xs text-zinc-900 underline decoration-emerald-500">
-              <i class="fa-solid fa-triangle-exclamation text-emerald-500"></i>
+              <i class="fa-solid fa-check text-emerald-500"></i>
               Often on time
             </p>
             <p v-else-if="flight.delay_percentage < 15" class="text-xs text-zinc-900 underline decoration-yellow-500">
@@ -21,7 +21,7 @@
               Possible Delay
             </p>
             <p v-else class="text-xs text-zinc-900 underline decoration-red-500">
-              <i class="fa-solid fa-triangle-exclamation text-red-500"></i>
+              <i class="fa-solid fa-circle-exclamation text-red-500"></i>
               Often Delayed
             </p>
           </div>

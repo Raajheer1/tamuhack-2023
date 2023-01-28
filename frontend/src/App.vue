@@ -1,9 +1,5 @@
 <template>
   <router-view />
-  <search-and-book-flight />
-<!--  <div class="m-1">-->
-<!--    <FlightInfo :flight="plane" />-->
-<!--  </div>-->
 </template>
 <script setup lang="ts">
 import FlightInfo from "@/components/FlightInfo.vue";
