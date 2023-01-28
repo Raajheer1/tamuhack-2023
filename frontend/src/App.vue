@@ -1,11 +1,13 @@
 <template>
   <router-view />
+  <search-and-book-flight />
 <!--  <div class="m-1">-->
 <!--    <FlightInfo :flight="plane" />-->
 <!--  </div>-->
 </template>
 <script setup lang="ts">
 import FlightInfo from "@/components/FlightInfo.vue";
+import SearchAndBookFlight from "./components/SearchAndBookFlight.vue";
 import {Airport, Flight} from "@/types";
 
 const JFK: Airport = {
