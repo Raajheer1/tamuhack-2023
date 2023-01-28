@@ -1,8 +1,8 @@
 <template>
   <router-view />
-  <div class="m-1">
-    <FlightInfo :flight="plane" />
-  </div>
+<!--  <div class="m-1">-->
+<!--    <FlightInfo :flight="plane" />-->
+<!--  </div>-->
 </template>
 <script setup lang="ts">
 import FlightInfo from "@/components/FlightInfo.vue";
@@ -28,6 +28,9 @@ const plane: Flight = {
   arrival: DFW,
   date: "Mon 31st July",
   departure_time: "10:30PM",
-  arrival_time: "12:30PM"
+  arrival_time: "12:30PM",
+  delay_percentage: 20,
+  delay_time: 10,
+  price: 1234,
 }
 </script>

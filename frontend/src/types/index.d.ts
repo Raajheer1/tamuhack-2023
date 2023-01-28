@@ -5,6 +5,9 @@ export type Flight = {
     date: string;
     departure_time: string;
     arrival_time: string;
+    delay_percentage: number;
+    delay_time: number;
+    price: number;
 };
 
 export type Airport = {
