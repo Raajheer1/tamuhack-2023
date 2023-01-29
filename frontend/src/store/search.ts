@@ -5,6 +5,7 @@ import {Airport, Flight, SearchRequest} from "@/types/index";
 
 interface QueryState {
     query: Query | null;
+    flight: Flight | null
     fetching: boolean;
     hasFetched: boolean;
     loading: Promise<void> | null;
@@ -21,6 +22,7 @@ const useSearchStore = defineStore("search", {
     state: () =>
         ({
             query: null,
+            flight: null,
             fetching: false,
             hasFetched: false,
         } as QueryState),
@@ -28,7 +30,7 @@ const useSearchStore = defineStore("search", {
         getQuery: (state) => state.query,
     },
     actions: {
-        async search(request: SearchRequest) {
+        async search(request: any) {
             this.fetching = true;
             try {
                 const { data } = await API.post(`${import.meta.env.VITE_API_URL}/search`, request);

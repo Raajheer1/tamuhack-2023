@@ -97,15 +97,17 @@
   const return_date = ref('')
 
   async function search() {
-    let request: SearchRequest = {
-      departure: dAirport.value,
-      arrival: aAirport.value,
-      departure_date: departure_date.value,
-      return_date: null
+    let request = {
+      "departure_day": dAirport.value,
+      "flight_destination": aAirport.value,
+      "flight_origin": departure_date.value,
+      "return_day": ""
     }
 
+    request["departure_day"] = dAirport.value.substring(6, 10) + "-" + dAirport.value.substring(0, 2) + "-" + dAirport.value.substring(3, 5)
+
     if (picked.value !== 'true') {
-      request['return_date'] = return_date.value
+      request["return_day"] = return_date.value
     }
 
     await searchStore.search(request)
