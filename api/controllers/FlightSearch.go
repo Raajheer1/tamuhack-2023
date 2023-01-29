@@ -25,16 +25,6 @@ func Search(c *gin.Context) {
 	}
 
 	if input.ReturnDay == "" {
-		flights, err := duffel.SearchOneWay(input.FlightOrigin, input.FlightDestination, input.DepartureDay)
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
-			return
-		}
-		c.JSON(http.StatusAccepted, flights)
-		return
-	}
-
-	if input.ReturnDay == "" {
 		input.ReturnDay = input.DepartureDay
 	}
 	flights, err := duffel.Search(input.FlightOrigin, input.FlightDestination, input.DepartureDay, input.ReturnDay)
