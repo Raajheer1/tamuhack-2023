@@ -3,7 +3,7 @@
     <div class="h-full">
       <div class="px-8 pt-12">
         <div class="flex justify-between">
-          <h1 class="text-3xl mt-1">Raaj Patel</h1>
+          <h1 class="text-3xl mt-1">{{ userStore.getFullName }}</h1>
           <i class="fa-solid fa-user rounded-full border border-4 border-black p-3"></i>
         </div>
         <div class="grid grid-cols-3 py-5 gap-x-5 border-b-2 border-black">

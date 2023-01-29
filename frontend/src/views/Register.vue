@@ -41,14 +41,14 @@ const name = ref("");
 const email = ref("");
 const password = ref("")
 const error = ref("");
-const request = {
-  name,
-  email,
-  password
-}
 
 async function register() {
-  const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, request);
+  const request = {
+    name: name.value,
+    email: email.value,
+    password: password.value
+  }
+  const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, request);
   if(response.status == 200){
     await router.push('/')
   }else{

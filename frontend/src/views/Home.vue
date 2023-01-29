@@ -60,10 +60,16 @@ import Footer from "@/views/partials/Footer.vue";
 import CTA from "@/components/CTA.vue";
 import {useRouter} from "vue-router";
 import useUserStore from "@/store/user";
+import {onMounted} from "vue";
 
 const userStore = useUserStore();
 const router = useRouter();
 
+onMounted(() => {
+  if(userStore.hasFetched != true) {
+    userStore.fetchUser();
+  }
+})
 </script>
 
 <style scoped>

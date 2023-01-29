@@ -36,12 +36,12 @@ const router = useRouter();
 const email = ref("");
 const password = ref("")
 const error = ref("");
-const request = {
-  email,
-  password
-}
 
 async function signIn() {
+  const request = {
+    email: email.value,
+    password: password.value
+  }
   const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, request);
   if(response.status == 200){
     await router.push('/')
