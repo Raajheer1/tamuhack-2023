@@ -2,10 +2,7 @@
 
 </template>
 
-<script>
-export default {
-  name: "ErrorNotFound"
-};
+<script setup lang="ts">
 </script>
 
 <style scoped>

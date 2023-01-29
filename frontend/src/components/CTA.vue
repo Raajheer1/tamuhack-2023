@@ -1,17 +1,10 @@
 <template>
   <div class="rounded-lg font-bold text-black px-10 pb-16 pt-4 underline decoration-2 decoration-pink-500 mb-8" id="main-cta">
-    <p class="drop-shadow drop-shadow-2xl text-3xl">Get out and about</p>
-    <div class="drop-shadow drop-shadow-2xl flex">
-      <p class="text-sm mt-1 mr-1 tracking-wide">Book a flight with TimelyTravel</p>
-      <i class="fa-solid fa-arrow-right mt-1.5"></i>
-    </div>
+    <h1 class="text-3xl">Welcome back!</h1>
   </div>
 </template>
 
-<script>
-export default {
-  name: "CTA"
-};
+<script setup lang="ts">
 </script>
 
 <style scoped>

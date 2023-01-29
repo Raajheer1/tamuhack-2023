@@ -1,10 +1,13 @@
 <template>
   <div class="flex flex-col h-screen justify-between">
-    <div class="h-full pt-8">
-      <CTA @click="router.push('search')" />
+    <div class="h-full pt-12">
+      <CTA />
       <div class="px-8">
-        <h1 class="text-3xl">Welcome back!</h1>
-        <h2>{{ userStore.getFullName }}</h2>
+        <p class="text-3xl">Get out and about</p>
+        <div class="flex" @click="router.push('search')">
+          <p class="text-sm mt-1 mr-1 tracking-wide">Book a flight with TimelyTravel</p>
+          <i class="fa-solid fa-arrow-right mt-1.5"></i>
+        </div>
 
         <div @click="router.push('search')" class="flex bg-zinc-200 rounded-full py-3 px-3 mt-10 justify-between">
           <div class="flex">

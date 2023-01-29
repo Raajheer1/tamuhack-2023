@@ -33,10 +33,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "RecentSearches"
-};
+<script setup lang="ts">
 </script>
 
 <style scoped>

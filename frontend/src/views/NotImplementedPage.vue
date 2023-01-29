@@ -2,10 +2,7 @@
   <h1>Not Implemented</h1>
 </template>
 
-<script>
-export default {
-  name: "NotImplementedPage"
-};
+<script setup lang="ts">
 </script>
 
 <style scoped>

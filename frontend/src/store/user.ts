@@ -12,10 +12,8 @@ interface UserState {
 
 interface User {
     id: number;
-    first_name: string;
-    last_name: string;
-    ffnumber: string;
-    trips: Flight[];
+    name: string
+    trips: Flight[] | null;
     created_at: string;
     updated_at: string;
 }
@@ -31,13 +29,13 @@ const useUserStore = defineStore("user", {
     getters: {
         isLoggedIn: (state) => !!state.user,
         getTrips: (state) => state.user?.trips,
-        getFullName: (state) => `${state.user?.first_name} ${state.user?.last_name}`,
+        getFullName: (state) => state.user?.name,
     },
     actions: {
         async fetchUser() {
             this.fetching = true;
             try {
-                const { data } = await API.get("/v1/user/");
+                const { data } = await API.get("/user");
                 this.user = data;
             } catch (e) {
                 this.user = null;

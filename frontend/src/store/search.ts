@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
 import { API } from "@/utils/api";
-import {Airport, Flight} from "@/types";
+import {Airport, Flight, SearchRequest} from "@/types/index";
 
 interface QueryState {
     query: Query | null;
@@ -28,10 +28,10 @@ const useSearchStore = defineStore("search", {
         getQuery: (state) => state.query,
     },
     actions: {
-        async fetchResults() {
+        async search(request: SearchRequest) {
             this.fetching = true;
             try {
-                const { data } = await API.get("/v1/search/");
+                const { data } = await API.post(`${import.meta.env.VITE_API_URL}/search`, request);
                 this.query = data;
             } catch (e) {
                 this.query = null;

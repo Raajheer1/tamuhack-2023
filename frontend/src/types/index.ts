@@ -15,3 +15,10 @@ export type Airport = {
     name: string;
     city: string;
 }
+
+export type SearchRequest = {
+    departure: string;
+    arrival: string;
+    departure_date: string;
+    return_date: string | null;
+}

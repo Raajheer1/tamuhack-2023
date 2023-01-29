@@ -21,8 +21,14 @@ func main() {
 		log.Fatalf("Error loading .env file")
 	}
 	models.ConnectDatabase()
+
+	corsConfig := cors.DefaultConfig()
+	corsConfig.AllowOrigins = []string{os.Getenv("*")}
+	corsConfig.AddAllowMethods("OPTIONS")
+
 	// initalize gin router
 	r := gin.Default()
+	r.Use(cors.New(corsConfig))
 	store := cookie.NewStore([]byte(os.Getenv("SESSION_KEY")))
 	r.Use(sessions.Sessions("mysession", store))
 	r.Use(auth.Auth)
