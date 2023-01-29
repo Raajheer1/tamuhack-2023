@@ -27,7 +27,7 @@ def predict():
         prediction = model.predict(features)
         output = round(prediction[0][0], 2)
 
-        return {'apparent_temp': output}
+        return {'pred_val': output}
     except Exception as e:
         print(e)
         return 'Calculation Error', 500
