@@ -1,0 +1,1 @@
+ssh -L 3306:localhost:3306 root@5.161.92.32 -f -N
