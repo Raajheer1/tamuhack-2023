@@ -98,9 +98,9 @@
 
   async function search() {
     let request = {
-      "departure_day": dAirport.value,
+      "departure_day": departure_date.value,
       "flight_destination": aAirport.value,
-      "flight_origin": departure_date.value,
+      "flight_origin": dAirport.value,
       "return_day": ""
     }
 
