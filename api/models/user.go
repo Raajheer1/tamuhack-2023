@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
+	utils "github.com/Raajheer1/tamuhack-2023/api/m/v2/utils"
 	"github.com/jinzhu/gorm"
-	"github.com/melbourneandrew/go-soap/m/v2/utils"
 )
 
 type User struct {

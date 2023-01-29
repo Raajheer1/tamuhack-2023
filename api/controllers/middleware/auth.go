@@ -1,9 +1,11 @@
 package auth
 
 import (
+	"net/http"
+
+	models "github.com/Raajheer1/tamuhack-2023/api/m/v2/models"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/melbourneandrew/go-soap/m/v2/models"
 )
 
 func Auth(c *gin.Context) {
@@ -29,5 +31,13 @@ func Auth(c *gin.Context) {
 	// so delete it.
 	session.Delete("user-id")
 	c.Set("x-guest", true)
+	c.Next()
+}
+
+func NotGuest(c *gin.Context) {
+	if c.GetBool("x-guest") {
+		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
 	c.Next()
 }

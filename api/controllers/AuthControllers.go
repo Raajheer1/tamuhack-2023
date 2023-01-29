@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Raajheer1/tamuhack-2023/api/m/v2/models"
+	utils "github.com/Raajheer1/tamuhack-2023/api/m/v2/utils"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/melbourneandrew/go-soap/m/v2/models"
-	"github.com/melbourneandrew/go-soap/m/v2/utils"
 )
 
 type LoginInput struct {
