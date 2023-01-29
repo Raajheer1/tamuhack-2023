@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"fmt"
 	"net/http"
 
 	models "github.com/Raajheer1/tamuhack-2023/api/m/v2/models"
@@ -9,6 +10,7 @@ import (
 )
 
 func Auth(c *gin.Context) {
+	fmt.Println("Autheticating...")
 	session := sessions.Default(c)
 	userId := session.Get("user-id")
 	if userId == nil {
@@ -18,7 +20,7 @@ func Auth(c *gin.Context) {
 	}
 
 	user, err := models.GetUser(userId.(uint))
-	if err == nil {
+	if err != nil {
 		c.Set("x-guest", false)
 		c.Set("x-id", userId.(uint))
 		c.Set("x-user", user)
