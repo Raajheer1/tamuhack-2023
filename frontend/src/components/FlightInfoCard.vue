@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col justify-between h-screen bg-slate-100 pl-2 py-3">
-    <i @click="router.push('/') && SearchStore.clearFlight" class="ml-4 mt-12 fa-solid fa-arrow-left"></i>
+    <i @click="clickMe" class="ml-4 mt-12 fa-solid fa-arrow-left"></i>
     <div class="flex">
       <img src="@/assets/aa.png" alt="American Airlines" class="h-20 pt-2 pr-1" />
       <div class="grid grid-rows-2 mt-3">
@@ -70,6 +70,10 @@ import useSearchStore from "@/store/search";
 const SearchStore = useSearchStore();
 const router = useRouter();
 
+function clickMe() {
+  SearchStore.clearFlight();
+  router.push('/')
+}
 
 defineProps<{ flight: Flight }>()
 
