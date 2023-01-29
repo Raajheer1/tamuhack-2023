@@ -39,25 +39,57 @@
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <img src="https://www.svgrepo.com/show/57834/takeoff-the-plane.svg" class="w-5 h-5 text-gray-500 dark:text-gray-400" />
         </div>
-        <input name="start" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="New York">
+        <input name="start" type="text" v-model="dAirport" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="New York">
+        <ul v-if="dAirport !== ''" class="">
+          <li v-for="result in dAList" :key="result.code">{{ result.code }}</li>
+        </ul>
       </div>
       <span class="mx-4 text-gray-500">&nbsp;</span>
       <div class="relative">
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <img src="https://www.svgrepo.com/download/122269/plane-landing.svg" class="w-5 h-5 text-gray-500 dark:text-gray-400" />
         </div>
-        <input name="end" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-100 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="London">
+        <input name="end" type="text" v-model="aAirport" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-100 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="London">
+        <ul v-if="aAirport !== ''">
+          <li v-for="result in aAList" :key="result.code">{{ result.code }}</li>
+        </ul>
       </div>
     </div>
     <button type="button" class="mb-2 w-full inline-block px-6 py-2.5 bg-blue-600 mt-8 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Search</button>
-
   </div>
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref, onMounted, computed } from 'vue'
+  import axios from 'axios'
 
   const picked = ref('true')
+  const dAirport = ref('')
+  const aAirport = ref('')
+
+  const airports = ref()
+  onMounted(() => {
+    getAirports()
+  })
+
+  async function getAirports() {
+    const response = await axios.get('https://timley-travel-tamuahck.herokuapp.com/airports/all')
+    airports.value = response.data
+  }
+
+  const dAList = computed(() => {
+    if(airports.value == null) {
+      return []
+    }
+    return airports.value.filter((airport) => airport.city.includes(dAirport.value) || airport.code.includes(dAirport.value))
+  })
+
+  const aAList = computed(() => {
+    if(airports.value == null) {
+      return []
+    }
+    return airports.value.filter((airport) => airport.city.includes(aAirport.value) || airport.code.includes(aAirport.value))
+  })
 </script>
 
 <style scoped>

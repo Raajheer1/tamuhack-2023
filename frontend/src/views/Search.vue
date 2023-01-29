@@ -6,7 +6,7 @@
 import SearchAndBookFlight from "@/components/SearchAndBookFlight.vue";
 import {ref} from "vue";
 
-const search = ref(false);
+const search = ref(true);
 </script>
 
 <style scoped>
