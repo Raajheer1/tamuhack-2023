@@ -3,8 +3,8 @@
     <div class="grid grid-cols-10 gap-x-5">
       <div class="flex col-span-10">
         <div class="grid grid-rows-2 max-w-[30px]">
-          <span class="text-zinc-500 text-xl mx-2">{{ flight.date.substring(0,2) }}</span>
-          <span class="text-zinc-500 text-sm ml-1.5 -mt-1 text-clip">{{ flight.date.substring(2) }}</span>
+          <span class="text-zinc-500 text-xl mx-2">{{ flightDate.getDate() }}</span>
+          <span class="text-zinc-500 text-sm ml-1.5 -mt-1 text-clip">{{ flightDate.toDateString().substring(4,7) }}</span>
         </div>
         <img src="@/assets/aa.png" alt="American Airlines" class="h-10 pt-2 pr-1" />
         <div class="grid grid-cols-10">
@@ -16,7 +16,7 @@
             <div class="grid grid-rows-2 h-5/6">
               <div class="border-dotted border-b-2 border-black">
                 <span class="text-emerald-500 text-xs mr-2">NON-STOP</span>
-                <span class="text-zinc-500 text-xs ml-2">2H 42M</span>
+                <span class="text-zinc-500 text-xs ml-2">{{flight.slices[0].duration.substring(2)}}</span>
               </div>
               <div>
                 <p v-if="flight.delay_percentage < 5" class="text-xs text-zinc-900 underline decoration-emerald-500">
@@ -48,9 +48,17 @@
 </template>
 
 <script setup lang="ts">
-import {Flight} from "@/types";
+import FlightInfoCard from './FlightInfoCard.vue';
 
-defineProps<{ flight: Flight }>()
+
+const props = defineProps({
+  flight: {
+    type: Object,
+    default: {}
+  }
+})
+
+const flightDate = new Date(props.flight.slices[0].segments[0].arriving_at)
 
 </script>
 
