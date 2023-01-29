@@ -68,7 +68,6 @@ import {useRouter} from "vue-router";
 import useUserStore from "@/store/user";
 import {ref} from "vue";
 import {Airport, Flight} from "@/types";
-import axios from "axios/index";
 
 
 
