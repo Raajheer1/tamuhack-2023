@@ -6,7 +6,7 @@ import (
 
 	"github.com/Raajheer1/tamuhack-2023/api/m/v2/models"
 	utils "github.com/Raajheer1/tamuhack-2023/api/m/v2/utils"
-	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 

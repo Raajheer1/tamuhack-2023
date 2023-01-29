@@ -12,7 +12,7 @@ type SingleOfferResponse struct {
 }
 
 func GetSingleOfferById(offer_id string) (Offer, error) {
-	req, err := http.NewRequest("GET", "https://api.duffel.com/air/offers/{id}?return_available_services=false", nil)
+	req, err := http.NewRequest("GET", "https://api.duffel.com/air/offers/"+offer_id+"?return_available_services=false", nil)
 	if err != nil {
 		return Offer{}, err
 	}

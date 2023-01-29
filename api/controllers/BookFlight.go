@@ -20,15 +20,14 @@ func BookFlight(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
 		return
 	}
-	fmt.Println(input.OfferID)
 
 	offer, err := duffel.GetSingleOfferById(input.OfferID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
 		return
 	}
-	var user models.User
-	user = c.MustGet("x-user").(models.User)
+
+	user := c.MustGet("x-user").(*models.User)
 
 	err = models.CreateFlight(user, offer)
 	if err != nil {
@@ -36,5 +35,5 @@ func BookFlight(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Flight booked"})
+	c.JSON(http.StatusOK, offer)
 }

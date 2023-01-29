@@ -32,13 +32,14 @@ func main() {
 		})
 	})
 
-	auth := r.Group("/auth")
-	auth.POST("/login", controllers.Login)
-	auth.POST("/signup", controllers.Signup)
+	authRoutes := r.Group("/auth")
+	authRoutes.POST("/login", controllers.Login)
+	authRoutes.POST("/signup", controllers.Signup)
 
 	r.POST("/search", controllers.Search)
 
 	r.POST("/book", auth.NotGuest, controllers.BookFlight)
+	r.GET("/bookings", auth.NotGuest, controllers.GetUserBookings)
 
 	err := r.Run()
 	if err != nil {

@@ -174,7 +174,6 @@ type Offer struct {
 			} `json:"change_before_departure,omitempty"`
 		} `json:"conditions,omitempty"`
 	} `json:"slices,omitempty"`
-	PrivateFares        []interface{} `json:"private_fares,omitempty"`
 	PaymentRequirements struct {
 		RequiresInstantPayment  bool      `json:"requires_instant_payment,omitempty"`
 		PriceGuaranteeExpiresAt time.Time `json:"price_guarantee_expires_at,omitempty"`
@@ -214,7 +213,6 @@ type Offer struct {
 			Allowed         bool        `json:"allowed,omitempty"`
 		} `json:"change_before_departure,omitempty"`
 	} `json:"conditions,omitempty"`
-	BaseCurrency                          string        `json:"base_currency,omitempty"`
-	BaseAmount                            string        `json:"base_amount,omitempty"`
-	AllowedPassengerIdentityDocumentTypes []interface{} `json:"allowed_passenger_identity_document_types,omitempty"`
+	BaseCurrency string `json:"base_currency,omitempty"`
+	BaseAmount   string `json:"base_amount,omitempty"`
 }
