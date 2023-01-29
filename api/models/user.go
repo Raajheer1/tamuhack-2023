@@ -10,7 +10,8 @@ import (
 
 type User struct {
 	gorm.Model
-	Handle   string `gorm:"size:255; not null;" json:"handle"`
+	Email    string `gorm:"size:255; not null;" json:"email"`
+	Name     string `gorm:"size:255; not null;" json:"name"`
 	Password string `gorm:"size:255; not null;" json:"password"`
 }
 
@@ -18,7 +19,7 @@ func (u *User) CreateUser() (*User, error) {
 	fmt.Println("model.CreateUser: Creating new user")
 	fmt.Println(u)
 	// Check that username does not already exist
-	exists := DB.Where("handle = ?", u.Handle).First(&u)
+	exists := DB.Where("name = ?", u.Name).First(&u)
 	if !errors.Is(exists.Error, gorm.ErrRecordNotFound) {
 		return &User{}, errors.New("user with that handle exists")
 	}
@@ -30,10 +31,10 @@ func (u *User) CreateUser() (*User, error) {
 	return u, nil
 }
 
-func Login(handle string, password string) (*User, error) {
+func Login(email string, password string) (*User, error) {
 	u := User{}
 
-	err := DB.Where("handle = ?", handle).Take(&u).Error
+	err := DB.Where("email = ?", email).Take(&u).Error
 	if err != nil {
 		return nil, err
 	}

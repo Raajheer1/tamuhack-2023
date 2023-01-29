@@ -11,7 +11,7 @@ import (
 )
 
 type LoginInput struct {
-	Handle   string `json:"handle" binding:"required"`
+	Email    string `json:"email" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
 
@@ -27,7 +27,7 @@ func Login(c *gin.Context) {
 
 	fmt.Println(input)
 
-	user, err := models.Login(input.Handle, input.Password)
+	user, err := models.Login(input.Email, input.Password)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
 		return
@@ -43,7 +43,8 @@ func Login(c *gin.Context) {
 }
 
 type SignupInput struct {
-	Handle   string `json:"handle" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	Name     string `json:"name" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
 
@@ -55,7 +56,8 @@ func Signup(c *gin.Context) {
 	}
 
 	u := models.User{}
-	u.Handle = input.Handle
+	u.Email = input.Email
+	u.Name = input.Name
 	hashedPassword, err := utils.HashPassword(input.Password)
 	if err != nil {
 		c.JSON(400, gin.H{"e": err.Error()})

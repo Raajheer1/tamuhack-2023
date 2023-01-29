@@ -29,7 +29,7 @@ func BookFlight(c *gin.Context) {
 
 	user := c.MustGet("x-user").(*models.User)
 
-	err = models.CreateFlight(user, offer)
+	err = models.CreateFlight(user, offer.ID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
 		return

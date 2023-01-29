@@ -2,7 +2,6 @@ package models
 
 import (
 	"fmt"
-	"github.com/Raajheer1/tamuhack-2023/api/m/v2/duffel"
 	"log"
 	"os"
 
@@ -36,7 +35,7 @@ func ConnectDatabase() {
 	}
 	db.AutoMigrate(&User{})
 	db.AutoMigrate(&Flight{})
-	db.AutoMigrate(&duffel.Offer{})
+	//db.AutoMigrate(&duffel.Offer{})
 
 	//set top level decleration so db is available globaly
 	DB = db

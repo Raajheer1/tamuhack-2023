@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"github.com/Raajheer1/tamuhack-2023/api/m/v2/duffel"
 	"github.com/Raajheer1/tamuhack-2023/api/m/v2/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -17,5 +18,12 @@ func GetUserBookings(c *gin.Context) {
 		return
 	}
 
+
+
 	c.JSON(http.StatusOK, gin.H{"bookings": bookings})
+}
+
+func PredictFlightReliability(bookings *[]duffel.Offer) error {
+	fmt.Println("Predicting flight reliability...")
+	return nil
 }
