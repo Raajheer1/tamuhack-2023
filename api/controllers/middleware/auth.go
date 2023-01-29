@@ -10,29 +10,25 @@ import (
 
 func Auth(c *gin.Context) {
 	session := sessions.Default(c)
-	userId := 10
-	//userId := session.Get("user-id")
-	//if userId == nil {
-	//	c.Set("x-guest", true)
-	//	c.Next()
-	//	return
-	//}
+	userId := session.Get("user-id")
+	if userId == nil {
+		c.Set("x-guest", true)
+		c.Next()
+		return
+	}
 
-	//user, err := models.GetUser(userId.(uint))
-	var temp models.User
-	temp.Name = "Raaj Patel"
-	temp.Email = "raaj@raajpatel.dev"
-	temp.ID = 10
-	c.Set("x-guest", false)
-	c.Set("x-id", userId)
-	c.Set("x-user", temp)
-	c.Set("x-auth-type", "cookie")
-	c.Next()
-	return
+	user, err := models.GetUser(userId.(uint))
+	if err == nil {
+		c.Set("x-guest", false)
+		c.Set("x-id", userId.(uint))
+		c.Set("x-user", user)
+		c.Set("x-auth-type", "cookie")
+		c.Next()
+		return
+	}
 
 	// If we get here, they had a cookie with an invalid user
 	// so delete it.
-	return
 	session.Delete("user-id")
 	c.Set("x-guest", true)
 	c.Next()
