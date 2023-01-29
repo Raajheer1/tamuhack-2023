@@ -24,6 +24,9 @@ func Search(c *gin.Context) {
 		return
 	}
 	fmt.Println(input.FlightOrigin, input.FlightDestination, input.DepartureDay, input.ReturnDay)
+	if input.ReturnDay == "" {
+		input.ReturnDay = input.DepartureDay
+	}
 	flights, err := duffel.Search(input.FlightOrigin, input.FlightDestination, input.DepartureDay, input.ReturnDay)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})

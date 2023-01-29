@@ -31,33 +31,53 @@ type Data struct {
 
 func Search(origin string, destination string, departureDate string, returnDate string) (*OfferList, error) {
 	fmt.Println(origin, destination, departureDate, returnDate)
-	data := Payload{
-		Data: Data{
-			Slices: []Slices{
-				{
-					Origin:        origin,
-					Destination:   destination,
-					DepartureDate: departureDate,
+	var data Payload
+	if departureDate == returnDate {
+		data = Payload{
+			Data: Data{
+				Slices: []Slices{
+					{
+						Origin:        origin,
+						Destination:   destination,
+						DepartureDate: departureDate,
+					},
 				},
-				{
-					Origin:        destination,
-					Destination:   origin,
-					DepartureDate: returnDate,
-				},
-			},
-			Passengers: []Passengers{
-				{
-					Type: "adult",
+				Passengers: []Passengers{
+					{
+						Type: "adult",
+					},
 				},
 			},
-		},
+		}
+	} else {
+		data = Payload{
+			Data: Data{
+				Slices: []Slices{
+					{
+						Origin:        origin,
+						Destination:   destination,
+						DepartureDate: departureDate,
+					},
+					{
+						Origin:        destination,
+						Destination:   origin,
+						DepartureDate: returnDate,
+					},
+				},
+				Passengers: []Passengers{
+					{
+						Type: "adult",
+					},
+				},
+			},
+		}
 	}
-	paylaodJson, err := json.Marshal(data)
+	payloadJson, err := json.Marshal(data)
 	if err != nil {
 		fmt.Println("err marshalling payload")
 		return nil, err
 	}
-	body := bytes.NewReader(paylaodJson)
+	body := bytes.NewReader(payloadJson)
 
 	req, err := http.NewRequest("POST", "https://api.duffel.com/air/offer_requests?return_offers=false", body)
 	if err != nil {

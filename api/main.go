@@ -37,7 +37,7 @@ func main() {
 	authRoutes.POST("/signup", controllers.Signup)
 
 	r.POST("/search", controllers.Search)
-
+	r.GET("/user", auth.NotGuest, controllers.GetUserInfo)
 	r.POST("/book", auth.NotGuest, controllers.BookFlight)
 	r.GET("/bookings", auth.NotGuest, controllers.GetUserBookings)
 
