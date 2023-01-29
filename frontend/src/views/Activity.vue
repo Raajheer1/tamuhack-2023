@@ -16,13 +16,39 @@
         </div>
       </div>
 
-      <div class="flex border-t-2 border-zinc-20" v-for="x in 5">
+      <div class="flex border-t-2 border-zinc-20">
         <img src="@/assets/aa.png" class="w-20" />
         <div class="w-full grid grid-cols-4">
           <div class="col-span-3">
             <p>AAL174 <span class="text-zinc-500">ORD - LAX</span></p>
             <p class="text-xs text-zinc-500 -mt-0.5">Jun 21st</p>
-            <p class="text-xs text-zinc-500">$1,500</p>
+            <p class="text-xs text-zinc-500">$923</p>
+          </div>
+          <div class="mt-4 mr-3 text-right">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+      <div class="flex border-t-2 border-zinc-20">
+        <img src="@/assets/aa.png" class="w-20" />
+        <div class="w-full grid grid-cols-4">
+          <div class="col-span-3">
+            <p>AAL413 <span class="text-zinc-500">DFW - JFK</span></p>
+            <p class="text-xs text-zinc-500 -mt-0.5">Jun 23st</p>
+            <p class="text-xs text-zinc-500">$503</p>
+          </div>
+          <div class="mt-4 mr-3 text-right">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+      <div class="flex border-t-2 border-b-2 border-zinc-20">
+        <img src="@/assets/aa.png" class="w-20" />
+        <div class="w-full grid grid-cols-4">
+          <div class="col-span-3">
+            <p>AAL2033 <span class="text-zinc-500">IAH - MIA</span></p>
+            <p class="text-xs text-zinc-500 -mt-0.5">February 12th</p>
+            <p class="text-xs text-zinc-500">$270</p>
           </div>
           <div class="mt-4 mr-3 text-right">
             <i class="fa-solid fa-arrow-right"></i>
@@ -41,6 +67,10 @@ import CTA from "@/components/CTA.vue";
 import {useRouter} from "vue-router";
 import useUserStore from "@/store/user";
 import {ref} from "vue";
+import {Airport, Flight} from "@/types";
+import axios from "axios/index";
+
+
 
 const userStore = useUserStore();
 const router = useRouter();

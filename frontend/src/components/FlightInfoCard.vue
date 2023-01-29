@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-col justify-between h-screen bg-slate-100 pl-2 py-3">
+    <i @click="router.push('/') && SearchStore.clearFlight" class="ml-4 mt-12 fa-solid fa-arrow-left"></i>
     <div class="flex">
       <img src="@/assets/aa.png" alt="American Airlines" class="h-20 pt-2 pr-1" />
       <div class="grid grid-rows-2 mt-3">
@@ -42,6 +43,10 @@
           <p class="text-sm">Aircraft: B73M</p>
           <p class="text-sm">ETA: {{ flight.arrival_time }}</p>
           <p class="text-sm">Gate: Terminal 2, Gate 41</p>
+
+          <button @click="" class="mt-10 bg-sky-500 rounded-lg p-2 text-white">
+            <i class="fa-solid fa-ticket"></i> Book Flight
+          </button>
         </div>
       </div>
 
@@ -59,6 +64,12 @@
 
 <script setup lang="ts">
 import {Flight} from "@/types";
+import {useRouter} from "vue-router";
+import useSearchStore from "@/store/search";
+
+const SearchStore = useSearchStore();
+const router = useRouter();
+
 
 defineProps<{ flight: Flight }>()
 

@@ -19,15 +19,15 @@
           </div>
         </div>
 
-        <div class="flex mt-10" v-if="userStore.getTrips != null && userStore.getTrips.length > 0">
+        <div class="mt-10">
           <h2 class="text-xl">
             <i class="fa-solid fa-plane-departure"></i>
             Upcoming flights
           </h2>
-          <FlightInfo v-for="flight in userStore.getTrips" :key="flight.flight_number" :flight="flight" />
+          <FlightInfo :flight="plane" />
         </div>
 
-        <div class="mt-10" v-else>
+        <div class="mt-10" >
           <div class="flex">
             <h2 class="text-xl">
               <i class="fa-solid fa-plane-departure"></i>
@@ -55,6 +55,7 @@
 </template>
 
 <script setup lang="ts">
+import {Airport, Flight} from "@/types";
 import FlightInfo from "@/components/FlightInfo.vue";
 import Footer from "@/views/partials/Footer.vue";
 import CTA from "@/components/CTA.vue";
@@ -64,6 +65,31 @@ import {onMounted} from "vue";
 
 const userStore = useUserStore();
 const router = useRouter();
+
+
+const dep: Airport = {
+  code: "SEA",
+  name: "Seattle-Tacoma International Airport",
+  city: "Seattle"
+}
+
+const arr: Airport = {
+  code: "LAX",
+  name: "Los Angeles International Airport",
+  city: "Los Angeles"
+}
+
+const plane: Flight = {
+  flight_number: `AA976`,
+  departure: dep,
+  arrival: arr,
+  date: `05 Feb`,
+  departure_time: `14:20`,
+  arrival_time: `16:07`,
+  delay_percentage: 11,
+  delay_time: 20,
+  price: 245
+};
 
 onMounted(() => {
   if(userStore.hasFetched != true) {

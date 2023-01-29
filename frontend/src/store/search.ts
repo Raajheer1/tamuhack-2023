@@ -50,6 +50,12 @@ const useSearchStore = defineStore("search", {
                 data: flights,
             }
             this.query = obj;
+        },
+        saveFlight(flight: Flight) {
+            this.flight = flight;
+        },
+        clearFlight() {
+            this.flight = null;
         }
     },
 });
