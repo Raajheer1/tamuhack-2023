@@ -19,9 +19,9 @@ func (u *User) CreateUser() (*User, error) {
 	fmt.Println("model.CreateUser: Creating new user")
 	fmt.Println(u)
 	// Check that username does not already exist
-	exists := DB.Where("name = ?", u.Name).First(&u)
+	exists := DB.Where("email = ?", u.Email).First(&u)
 	if !errors.Is(exists.Error, gorm.ErrRecordNotFound) {
-		return &User{}, errors.New("user with that handle exists")
+		return &User{}, errors.New("user with that email exists")
 	}
 
 	if err := DB.Create(&u).Error; err != nil {

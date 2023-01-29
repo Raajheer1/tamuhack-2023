@@ -73,5 +73,17 @@ func Signup(c *gin.Context) {
 		return
 	}
 
+	user, err := models.Login(input.Email, input.Password)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
+		return
+	}
+	session := sessions.Default(c)
+	session.Set("user-id", user.ID)
+	if err := session.Save(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to save session"})
+		return
+	}
+
 	c.JSON(200, gin.H{"signup": "successful"})
 }
