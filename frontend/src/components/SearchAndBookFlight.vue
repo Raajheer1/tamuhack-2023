@@ -108,6 +108,8 @@
       request['return_date'] = return_date.value
     }
 
+    await searchStore.search(request)
+
     const planes:Flight[] = []
     for(var i = 0; i < 10; i++){
       planes.push(generateFlight(dAirport.value, aAirport.value))

@@ -33,6 +33,7 @@ const useSearchStore = defineStore("search", {
             try {
                 const { data } = await API.post(`${import.meta.env.VITE_API_URL}/search`, request);
                 this.query = data;
+                console.log(data);
             } catch (e) {
                 this.query = null;
             } finally {
