@@ -44,7 +44,7 @@
       </div>
     </div>
     
-    <button type="button" class="mb-2 w-full inline-block px-6 py-2.5 bg-blue-600 mt-8 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Search</button>
+    <button type="button" @click="search" class="mb-2 w-full inline-block px-6 py-2.5 bg-blue-600 mt-8 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Search</button>
   </div>
 </template>
 
@@ -54,6 +54,7 @@
   import axios from 'axios'
   import {SearchRequest} from "@/types";
   import useSearchStore from "@/store/search";
+  import {Flight} from "@/types";
 
   const searchStore = useSearchStore();
   const picked = ref('true')
@@ -107,9 +108,86 @@
       request['return_date'] = return_date.value
     }
 
-    await searchStore.search(request);
+    const planes:Flight[] = []
+    for(var i = 0; i < 10; i++){
+      planes.push(generateFlight(dAirport.value, aAirport.value))
+    }
+
+    searchStore.setQuery(dAirport.value, aAirport.value, planes)
+
   }
 
+function generateFlight(dep: string, arr: string) : Flight {
+  const number = Math.floor(Math.random() * 1000)
+  const departure:Airport = airports.value.find((airport: Airport) => airport.code === dep)
+  const arrival:Airport = airports.value.find((airport: Airport) => airport.code === arr)
+
+  let dep_time = Math.floor(Math.random() * 12)+1
+  const min_interval = Math.floor(Math.random() * 4)
+  let mins = "00"
+  if(min_interval == 0){
+    mins = "15"
+  }else if(min_interval == 1) {
+    mins = "30"
+  }else if(min_interval == 2) {
+    mins = "45"
+  }else if(min_interval == 3) {
+    mins = "25"
+  }
+
+  let mins_offset = Math.floor(Math.random() * 3) * 10
+
+  let total_min = parseInt(mins) + mins_offset
+  if(total_min > 60){
+    total_min = total_min - 60
+    dep_time = dep_time + 1
+  }
+
+  let month = ""
+  if(departure_date.value.substring(0, 2) == "01"){
+    month = "Jan"
+  }else if(departure_date.value.substring(0, 2) == "02") {
+    month = "Feb"
+  }else if(departure_date.value.substring(0, 2) == "03") {
+    month = "Mar"
+  }else if(departure_date.value.substring(0, 2) == "04") {
+    month = "Apr"
+  }else if(departure_date.value.substring(0, 2) == "05") {
+    month = "May"
+  }else if(departure_date.value.substring(0, 2) == "06") {
+    month = "Jun"
+  }else if(departure_date.value.substring(0, 2) == "07") {
+    month = "Jul"
+  }else if(departure_date.value.substring(0, 2) == "08") {
+    month = "Aug"
+  }else if(departure_date.value.substring(0, 2) == "09") {
+    month = "Sep"
+  }else if(departure_date.value.substring(0, 2) == "10") {
+    month = "Oct"
+  }else if(departure_date.value.substring(0, 2) == "11") {
+    month = "Nov"
+  }else if(departure_date.value.substring(0, 2) == "12") {
+    month = "Dec"
+  }
+
+
+  const delay_perc = Math.floor(Math.random() * 25)
+  const delay_len = Math.floor(Math.random() * 60)
+
+  const plane = {
+    flight_number: `AA${number}`,
+    departure: departure,
+    arrival: arrival,
+    date: `${departure_date.value.substring(3, 5)}${month}`,
+    departure_time: `${dep_time}:${mins}`,
+    arrival_time: `${dep_time+3}:${total_min}`,
+    delay_percentage: delay_perc,
+    delay_time: delay_len,
+    price: number/4
+  };
+
+  return plane
+}
 
 </script>
 

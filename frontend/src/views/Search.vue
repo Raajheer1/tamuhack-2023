@@ -4,7 +4,8 @@
     <div class="h-full pt-8">
       <div class="px-8">
         <h1 class="text-4xl mb-2">Where to?</h1>
-        <SearchAndBookFlight v-if="!search" />
+        <SearchAndBookFlight v-if="!SearchStore.query" />
+        <FlightInfo v-else v-for="flight in SearchStore.query.data" :flight="flight" />
       </div>
     </div>
   </div>
@@ -12,6 +13,7 @@
 </template>
 
 <script setup lang="ts">
+import FlightInfo from "@/components/FlightInfo.vue";
 import SearchAndBookFlight from "@/components/SearchAndBookFlight.vue";
 import Billing from "@/components/Billing.vue";
 import {ref} from "vue";

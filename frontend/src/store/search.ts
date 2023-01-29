@@ -11,8 +11,8 @@ interface QueryState {
 }
 
 interface Query {
-    origin: Airport;
-    destination: Airport;
+    origin: string;
+    destination: string;
     data: Flight[];
 }
 
@@ -40,6 +40,14 @@ const useSearchStore = defineStore("search", {
                 this.hasFetched = true;
             }
         },
+        setQuery(dest: string, origin: string, flights: Flight[]) {
+            const obj: Query = {
+                origin: origin,
+                destination: dest,
+                data: flights,
+            }
+            this.query = obj;
+        }
     },
 });
 

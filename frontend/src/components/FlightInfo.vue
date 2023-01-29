@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-100 pl-2 pt-1.5 rounded">
+  <div class="bg-slate-100 pl-2 pt-1.5 rounded border-b-2 border-b-white">
     <div class="grid grid-cols-10 gap-x-5">
       <div class="flex col-span-10">
         <div class="grid grid-rows-2 max-w-[30px]">
