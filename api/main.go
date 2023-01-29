@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/gin-contrib/cors"
 	"log"
 	"os"
 
@@ -23,7 +24,7 @@ func main() {
 	models.ConnectDatabase()
 
 	corsConfig := cors.DefaultConfig()
-	corsConfig.AllowOrigins = []string{os.Getenv("*")}
+	corsConfig.AllowOrigins = []string{"*"}
 	corsConfig.AddAllowMethods("OPTIONS")
 
 	// initalize gin router
