@@ -98,13 +98,12 @@
 
   async function search() {
     let request = {
-      "departure_day": departure_date.value,
+      "departure_day": departure_date.value.substring(6, 10) + "-" + departure_date.value.substring(0, 2) + "-" + departure_date.value.substring(3, 5),
       "flight_destination": aAirport.value,
       "flight_origin": dAirport.value,
       "return_day": ""
     }
 
-    request["departure_day"] = dAirport.value.substring(6, 10) + "-" + dAirport.value.substring(0, 2) + "-" + dAirport.value.substring(3, 5)
 
     if (picked.value !== 'true') {
       request["return_day"] = return_date.value
