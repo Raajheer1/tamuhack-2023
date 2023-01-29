@@ -116,7 +116,7 @@
       planes.push(generateFlight(dAirport.value, aAirport.value))
     }
 
-    searchStore.setQuery(dAirport.value, aAirport.value, planes)
+    // searchStore.setQuery(dAirport.value, aAirport.value, planes)
 
   }
 

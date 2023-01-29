@@ -24,13 +24,12 @@ func main() {
 	models.ConnectDatabase()
 
 	corsConfig := cors.DefaultConfig()
-	corsConfig.AllowOrigins = []string{"*"}
-	corsConfig.AllowCredentials = true
+	corsConfig.AllowAllOrigins = true
 	corsConfig.AddAllowMethods("OPTIONS")
 
 	// initalize gin router
 	r := gin.Default()
-	//r.Use(cors.New(corsConfig))
+	r.Use(cors.New(corsConfig))
 	store := cookie.NewStore([]byte(os.Getenv("SESSION_KEY")))
 	r.Use(sessions.Sessions("mysession", store))
 	r.Use(auth.Auth)
