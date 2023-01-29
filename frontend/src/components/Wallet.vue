@@ -38,7 +38,7 @@
       </div>
       <div class="bg-slate-100 p-4 flow-root">
         <div class="float-left">
-          <h3>Oneworld</h3>
+          <h3>AAdvantage</h3>
           <label class="text-xs">
             Raaj Patel (XX-XX2-839)
           </label>

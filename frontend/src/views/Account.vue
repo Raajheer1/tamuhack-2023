@@ -55,7 +55,7 @@ import { ref } from "vue";
 const userStore = useUserStore();
 const router = useRouter();
 
-const info = ref('trips')
+const info = ref('wallet')
 
 function switchModal(modal:string) {
   info.value = modal
