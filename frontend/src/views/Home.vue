@@ -1,59 +1,66 @@
 <template>
-  <SearchResults :flights="arr" :origin="JFK" :destination="DFW" />
+  <div class="flex flex-col h-screen justify-between">
+    <div class="h-full pt-8">
+      <CTA @click="router.push('search')" />
+      <div class="px-8">
+        <h1 class="text-3xl">Welcome back!</h1>
+        <h2>{{ userStore.getFullName }}</h2>
+
+        <div @click="router.push('search')" class="flex bg-zinc-200 rounded-full py-3 px-3 mt-10 justify-between">
+          <div class="flex">
+            <i class="fa-solid fa-magnifying-glass mt-1"></i>
+            <p class="pl-2">Where to?</p>
+          </div>
+          <div class="bg-zinc-700 text-white text-xs rounded-full px-2 py-1">
+            Random
+          </div>
+        </div>
+
+        <div class="flex mt-10" v-if="userStore.getTrips != null && userStore.getTrips.length > 0">
+          <h2 class="text-xl">
+            <i class="fa-solid fa-plane-departure"></i>
+            Upcoming flights
+          </h2>
+          <FlightInfo v-for="flight in userStore.getTrips" :key="flight.flight_number" :flight="flight" />
+        </div>
+
+        <div class="mt-10" v-else>
+          <div class="flex">
+            <h2 class="text-xl">
+              <i class="fa-solid fa-plane-departure"></i>
+              Popular Vacation Spots
+            </h2>
+          </div>
+          <div class="mt-4 ml-4 underline decoration-yellow-500 decoration-2">
+            <i class="fa-solid fa-trophy text-yellow-500"></i>
+            <span class="text-lg mx-2">Anchorage, Alaska</span>
+          </div>
+          <div class="mt-2 ml-4 underline decoration-slate-400 decoration-2">
+            <i class="fa-solid fa-trophy text-slate-400"></i>
+            <span class="text-lg mx-2">The Valley, Anguilla</span>
+          </div>
+          <div class="mt-2 ml-4 underline decoration-amber-600 decoration-2">
+            <i class="fa-solid fa-trophy text-amber-600"></i>
+            <span class="text-lg mx-2">South Island, New Zealand</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <Footer>Footer</Footer>
+  </div>
 </template>
 
 <script setup lang="ts">
-import SearchResults from "@/views/partials/SearchResults.vue";
 import FlightInfo from "@/components/FlightInfo.vue";
-import {Airport, Flight} from "@/types";
+import Footer from "@/views/partials/Footer.vue";
+import CTA from "@/components/CTA.vue";
+import {useRouter} from "vue-router";
+import useUserStore from "@/store/user";
 
-const JFK: Airport = {
-  code: "JFK",
-  name: "John F. Kennedy International Airport",
-  city: "New York",
-}
+const userStore = useUserStore();
+const router = useRouter();
 
-const DFW: Airport = {
-  code: "DFW",
-  name: "Dallas/Fort Worth International Airport",
-  city: "Dallas",
-}
-
-const plane: Flight = {
-  flight_number: "AA123",
-  departure: JFK,
-  arrival: DFW,
-  date: "Mon 31st July",
-  departure_time: "10:30PM",
-  arrival_time: "12:30PM",
-  delay_percentage: 20,
-  delay_time: 10,
-  price: 1234,
-}
-const plane1: Flight = {
-  flight_number: "AA1234",
-  departure: JFK,
-  arrival: DFW,
-  date: "Mon 31st July",
-  departure_time: "11:30PM",
-  arrival_time: "1:30AM",
-  delay_percentage: 2,
-  delay_time: 10,
-  price: 1234,
-}
-const plane2: Flight = {
-  flight_number: "AA12345",
-  departure: JFK,
-  arrival: DFW,
-  date: "Mon 31st July",
-  departure_time: "9:30PM",
-  arrival_time: "10:30PM",
-  delay_percentage: 10,
-  delay_time: 10,
-  price: 1234,
-}
-
-const arr: Flight[] = [plane, plane1, plane2]
 </script>
 
 <style scoped>

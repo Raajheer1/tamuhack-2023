@@ -8,7 +8,11 @@ import SearchAndBookFlight from "@/components/SearchAndBookFlight.vue";
 import Billing from "@/components/Billing.vue";
 import {ref} from "vue";
 
-const search = ref(true);
+import useSearchStore from "@/store/search";
+import SearchResults from "@/views/partials/SearchResults.vue";
+const SearchStore = useSearchStore();
+
+const search = ref(false);
 </script>
 
 <style scoped>

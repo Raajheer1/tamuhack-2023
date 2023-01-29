@@ -17,7 +17,7 @@ interface Query {
 }
 
 
-const useUserStore = defineStore("user", {
+const useSearchStore = defineStore("search", {
     state: () =>
         ({
             query: null,
@@ -30,7 +30,6 @@ const useUserStore = defineStore("user", {
     actions: {
         async fetchResults() {
             this.fetching = true;
-            this.origin = "EGLL";
             try {
                 const { data } = await API.get("/v1/search/");
                 this.query = data;
@@ -44,4 +43,4 @@ const useUserStore = defineStore("user", {
     },
 });
 
-export default useUserStore;
+export default useSearchStore;

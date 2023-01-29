@@ -1,8 +1,9 @@
 <template>
   <router-view />
+<!--  <FlightInfo :flight="plane" />-->
 </template>
 <script setup lang="ts">
-import FlightInfo from "@/components/FlightInfo.vue";
+import FlightInfo from "@/components/FlightInfoCard.vue";
 import SearchAndBookFlight from "./components/SearchAndBookFlight.vue";
 import {Airport, Flight} from "@/types";
 
@@ -19,13 +20,13 @@ const DFW: Airport = {
 }
 
 const plane: Flight = {
-  flight_number: "AA123",
+  flight_number: "AA1234",
   departure: JFK,
   arrival: DFW,
   date: "Mon 31st July",
-  departure_time: "10:30PM",
-  arrival_time: "12:30PM",
-  delay_percentage: 20,
+  departure_time: "11:30PM",
+  arrival_time: "1:30AM",
+  delay_percentage: 2,
   delay_time: 10,
   price: 1234,
 }

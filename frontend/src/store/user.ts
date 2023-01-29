@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 
 import { API } from "@/utils/api";
+import {Flight} from "@/types";
 
 interface UserState {
     user: User | null;
@@ -14,6 +15,7 @@ interface User {
     first_name: string;
     last_name: string;
     ffnumber: string;
+    trips: Flight[];
     created_at: string;
     updated_at: string;
 }
@@ -28,6 +30,8 @@ const useUserStore = defineStore("user", {
         } as UserState),
     getters: {
         isLoggedIn: (state) => !!state.user,
+        getTrips: (state) => state.user?.trips,
+        getFullName: (state) => `${state.user?.first_name} ${state.user?.last_name}`,
     },
     actions: {
         async fetchUser() {
