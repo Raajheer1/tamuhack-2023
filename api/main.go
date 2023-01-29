@@ -24,7 +24,7 @@ func main() {
 	models.ConnectDatabase()
 
 	corsConfig := cors.DefaultConfig()
-	corsConfig.AllowOrigins = []string{"*"}
+	corsConfig.AllowOrigins = []string{"http://localhost:5173"}
 	corsConfig.AddAllowMethods("OPTIONS")
 
 	// initalize gin router
