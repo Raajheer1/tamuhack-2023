@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-3 py-5 border-t-2">
+  <div class="fixed bottom-0 bg-white w-full grid grid-cols-3 py-5 border-t-2">
     <div class="flex items-center text-center">
       <div class="col-span-1 w-full">
         <div @click="router.push('/')" class="grid grid-rows-2" :class="{'text-zinc-400':currentRoute!='Home'}">

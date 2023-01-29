@@ -33,7 +33,8 @@
           </div>
         </div>
       </div>
-
+      <!-- <Help /> -->
+      <Trips />
     </div>
     <Footer>Footer</Footer>
   </div>
@@ -41,6 +42,8 @@
 
 <script setup lang="ts">
 import FlightInfo from "@/components/FlightInfo.vue";
+import Help from "@/components/Help.vue";
+import Trips from "@/components/Trips.vue"
 import Footer from "@/views/partials/Footer.vue";
 import CTA from "@/components/CTA.vue";
 import {useRouter} from "vue-router";
