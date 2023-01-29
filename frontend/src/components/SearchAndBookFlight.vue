@@ -26,13 +26,13 @@
     <div class="flow-root">  
       <div class="float-left w-2/4 p-4">
         <input name="start" type="text" v-model="dAirport" class="top-0 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="New York">
-        <ul v-if="dAirport !== ''" class="p-2 rounded border-gray-300 overflow-auto">
+        <ul v-if="dAirport !== ''" class="p-2 rounded border-gray-300">
           <li v-for="result in dAList" :key="result.code" @click="setDep(result.code)" class="mt-2 w-full">{{ result.city }} ({{ result.code }})</li>
         </ul>
       </div>
       <div class="float-right w-2/4 p-4">
         <input name="start" type="text" v-model="aAirport" class="top-0 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Los Angeles">
-        <ul v-if="aAirport !== ''" class="p-2 rounded border-gray-300 overflow-auto">
+        <ul v-if="aAirport !== ''" class="p-2 rounded border-gray-300">
           <li v-for="result in aAList" :key="result.code" @click="setArr(result.code)" class="mt-2 w-full">{{ result.city }} ({{ result.code }})</li>
         </ul>
       </div>
